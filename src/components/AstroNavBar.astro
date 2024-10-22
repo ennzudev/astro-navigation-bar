@@ -1,0 +1,106 @@
+---
+import NavBarItem from "./NavBarItem.astro";
+---
+
+<nav class="h-14 text-base bg-secondary flex justify-between items-center">
+  <NavBarItem href="/" className="home-link">
+    <svg
+      viewBox="0 0 24 24"
+      class="py-2 px-5 h-full"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 3v4m0 0v10m0-10L9 4m3 3 3-3m-3 13v4m0-4-3 3m3-3 3 3M4.205 7.5l3.464 2m0 0 8.66 5m-8.66-5-4.098 1.098M7.67 9.5 6.572 5.402m9.759 9.098 3.464 2m-3.464-2 1.098 4.098M16.33 14.5l4.098-1.098M4.207 16.5l3.464-2m0 0 8.66-5m-8.66 5-4.098-1.098M7.67 14.5l-1.098 4.098M16.33 9.5l3.464-2m-3.464 2 1.098-4.098M16.331 9.5l4.098 1.098"
+        stroke="#f0f0f0"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+      </path>
+    </svg>
+  </NavBarItem>
+  <input type="checkbox" id="sidebar-active" />
+  <label for="sidebar-active" class="block p-3 sm:p-0 sm:hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="32"
+      viewBox="0 -960 960 960"
+      width="32"
+    >
+      <path
+        d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+      >
+      </path>
+    </svg>
+  </label>
+  <label id="overlay" for="sidebar-active"></label>
+  <div
+    class="links-container h-full flex flex-col sm:flex-row items-start md:items-center"
+  >
+    <label for="sidebar-active" class="block p-3 sm:p-0 sm:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="32"
+        viewBox="0 -960 960 960"
+        width="32"
+      >
+        <path
+          d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+        >
+        </path>
+      </svg>
+    </label>
+    <NavBarItem href="about.html">About</NavBarItem>
+    <NavBarItem href="products.html">Products</NavBarItem>
+    <NavBarItem href="blog.html">Blog</NavBarItem>
+    <NavBarItem href="login.html">Login</NavBarItem>
+  </div>
+</nav>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<style>
+  nav svg {
+    fill: #f0f0f0;
+  }
+
+  #sidebar-active {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .links-container {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      z-index: 10;
+      width: 66.66%;
+
+      background-color: #0f1016;
+      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+      transition: 1s ease-in-out;
+    }
+    #sidebar-active:checked ~ .links-container {
+      right: 0;
+    }
+    #sidebar-active:checked ~ #overlay {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
+  }
+</style>

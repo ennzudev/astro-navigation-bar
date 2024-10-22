@@ -1,0 +1,27 @@
+---
+interface Props {
+  href: string;
+  className?: string;
+}
+
+const { href, className } = Astro.props;
+---
+
+<a
+  class:list={[
+    "box-border h-auto w-full sm:h-full py-4 sm:py-0 sm:w-auto sm:box-content px-8 sm:px-5 flex justify-start sm:justify-normal items-center no-underline text-neutral hover:bg-primary",
+    className,
+  ]}
+  href={href}
+>
+  <slot />
+</a>
+
+<style>
+  .home-link {
+    margin-right: auto;
+    background-color: transparent;
+    padding: 0;
+    height: 100%;
+  }
+</style>
